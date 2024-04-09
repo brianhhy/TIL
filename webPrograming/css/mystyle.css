@@ -13,7 +13,7 @@ body{
 p{
     font-size: 100px;
 }*/
-.parent{
+/*.parent{
     width:300px;
     background-color: red;
 }
@@ -39,4 +39,56 @@ p{
 p{
     color: yellowgreen;
     font-size: 25px;
+}
+p:hover{
+    color: red;
+    font-size: 35px;
+}
+p:active{
+    color:aqua;
+    font-size: 25px;
+}
+p:first-child{
+    color:blue;
+    font-size: 40px;
+}
+.fruit *:nth-child(2n){
+    color:red;
+}
+.fruit *:not(span){
+    color:black;
+}
+
+.box::before{
+    
+    content:"앞!";
+
+}
+
+.box::after{
+
+    content:"뒤!";
+}
+
+::before{
+    content:"AAAAA";
+    
+}*/
+
+ol *:nth-child(5)::before{
+    content:"AAAAA";
+    color: red;
+}
+ol *:nth-child(7):active::before{
+    content:"AAAAA";
+    color:red;
+}
+
+div{
+    width:90px;
+    height:30px;
+    border:10px solid black;
+    margin: 20px 30px 40px;
+    padding-bottom: 20px;
+    border-radius: 40px;
 }
