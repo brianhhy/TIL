@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function add(){
+            let h = document.getElementById("hero");
+            hero.style.display="inline";
+        }
+        function comeback(){
+            let h = document.getElementById("hero");
+            hero.style.display="none"
+            hero.src="";
+
+        }
+        function change(obj, size, color){
+            obj.style.color = color;
+            obj.style.fontSize = size;
+        }
+    </script>
+    <p id="firstP" onclick="add()">클릭 하세요<img id="hero" style="display: none;" src="hero1.png" onclick="comeback()"></p>
+    <button onclick="change(this, '30px', 'blue')">버튼</button>
+</body>
+</html>

@@ -1,0 +1,58 @@
+.container1{
+
+    width:400px;
+    height:300px;
+    display:flex;
+    background-color: red;
+    justify-content: center;
+    margin: 20px;
+    flex-shrink: 0;
+}
+.container2{
+
+    width:350px;
+    height:300px;
+    display: flex;
+    background-color: red;
+    flex-direction: row;
+
+    
+}
+.item1{
+    width: 200px;
+    height:100px;
+    background-color: blue;
+    text-align: center;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.item2{
+    width: 200px;
+    height:120px;
+    background-color: orange;
+    text-align: center;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.item3{
+    width: 200px;
+    height:140px;
+    background-color: yellow;
+    text-align: center;
+    flex-basis: 0;
+    flex-grow: 2;
+}
+
+.tItem{
+    width: 100px;
+    height : 100px;
+    background-color: orange;
+    margin : 20px;
+    transition:
+        width .5s,
+        background-color 2s;
+}
+.tItem:hover{
+    width:300px;
+    background-color: royalblue;
+}
