@@ -1,0 +1,6 @@
+2024-05-13 14:28:52.745630+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM MEMBER INDEX [*]ID NAME PHONE_NUMBER"; SQL statement:
+SELECT * FROM MEMBER INDEX ID NAME PHONE_NUMBER [42000-224]
+2024-05-13 14:28:53.523424+09:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM MEMBER INDEX [*]ID NAME PHONE_NUMBER"; SQL statement:
+SELECT * FROM MEMBER INDEX ID NAME PHONE_NUMBER [42000-224]
