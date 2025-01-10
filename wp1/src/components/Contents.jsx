@@ -1,0 +1,150 @@
+import React, { useState, useEffect } from "react";
+import Sidebar from "./Sidebar"; // Sidebar 컴포넌트 불러오기
+
+// 랜덤 색상 생성 함수
+const getRandomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
+const Contents = ({ menuItems = [] }) => {
+  const [breadcrumb, setBreadcrumb] = useState(["내 책장"]); // Breadcrumb 상태
+  const [activeContent, setActiveContent] = useState(null); // Sidebar에서 전달된 콘텐츠
+  const [colorMap, setColorMap] = useState({}); // 색상 저장 상태
+
+  // 색상 초기화
+  useEffect(() => {
+    const initialColorMap = {};
+    menuItems.forEach((menuItem) => {
+      menuItem.subItems.forEach((subItem) => {
+        initialColorMap[subItem] = getRandomColor();
+      });
+    });
+    setColorMap(initialColorMap);
+  }, [menuItems]);
+
+  // Sidebar에서 메뉴 클릭 처리
+  const handleMenuClick = (menuName, subItems) => {
+    setBreadcrumb(["내 책장", menuName]); // Breadcrumb 업데이트
+    setActiveContent(
+      <div className="flex flex-wrap items-center justify-center gap-4 p-4 w-full">
+        {subItems.map((subItem, subIndex) => (
+          <div
+            key={subIndex}
+            className="w-full max-w-[200px] h-[300px] border border-gray-300 rounded-lg shadow-md flex flex-col items-center relative"
+          >
+            <div
+              className="absolute top-0 left-0 w-8 h-full"
+              style={{
+                backgroundColor: colorMap[subItem], // 랜덤 색상 사용
+                border: "none",
+                borderRadius: "0",
+              }}
+            ></div>
+            <div className="flex flex-col justify-center items-center w-full h-full">
+              <span className="text-lg font-bold text-gray-800">{subItem}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  // Breadcrumb의 "내 책장" 클릭 처리
+  const handleHomeClick = () => {
+    setBreadcrumb(["내 책장"]); // Breadcrumb 초기화
+    setActiveContent(null); // Content 초기화
+  };
+
+  return (
+    <div className="flex w-full h-screen">
+      {/* Sidebar */}
+      <div className="flex-shrink-0 flex-grow-0 bg-white h-full min-w-[300px]">
+        <Sidebar menuItems={menuItems} onMenuItemClick={handleMenuClick} />
+      </div>
+
+      {/* Main Content */}
+      <div className="flex flex-col w-full h-full">
+        {/* Breadcrumb */}
+        <div className="flex items-center p-4 w-full">
+          <ol className="flex space-x-2 text-gray-700 text-sm sm:text-base">
+            {breadcrumb.map((step, index) => (
+              <li key={index} className="flex items-center">
+                <span
+                  className={`text-lg cursor-pointer ${
+                    index === breadcrumb.length - 1
+                      ? "text-blue-600"
+                      : "text-gray-500"
+                  }`}
+                  onClick={index === 0 ? handleHomeClick : null}
+                >
+                  {step}
+                </span>
+                {index < breadcrumb.length - 1 && (
+                  <svg
+                    className="w-4 h-4 mx-2 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 12 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m7 9 4-4-4-4M1 9l4-4-4-4"
+                    />
+                  </svg>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* Content Area */}
+        <div className="flex flex-col items-center justify-center flex-grow p-4">
+          {activeContent ? (
+            activeContent
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 w-full">
+              {menuItems.map((menuItem, index) => (
+                <div
+                  key={index}
+                  className="relative flex flex-col items-center p-2 bg-white cursor-pointer border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105 w-full max-w-[250px] h-[300px] overflow-hidden"
+                  onClick={() =>
+                    handleMenuClick(menuItem.name, menuItem.subItems)
+                  }
+                >
+                  <h2 className="text-lg font-semibold text-gray-800 mb-2 text-center w-full truncate">
+                    {menuItem.name}
+                  </h2>
+                  <div className="flex flex-wrap items-center justify-center gap-1 w-full h-full overflow-hidden">
+                    {menuItem.subItems.map((subItem, subIndex) => (
+                      <div
+                        key={subIndex}
+                        className="flex items-center justify-center text-white text-sm font-medium rounded-md w-[30%] h-[200px]"
+                        style={{
+                          backgroundColor: colorMap[subItem], // 랜덤 색상 사용
+                          writingMode: "vertical-rl",
+                          textOrientation: "upright",
+                        }}
+                      >
+                        {subItem}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Contents;
