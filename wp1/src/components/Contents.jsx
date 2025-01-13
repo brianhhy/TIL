@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar"; // Sidebar 컴포넌트 불러오기
+import { Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
 // 랜덤 색상 생성 함수
 const getRandomColor = () => {
@@ -15,6 +17,7 @@ const Contents = ({ menuItems = [] }) => {
   const [breadcrumb, setBreadcrumb] = useState(["내 책장"]); // Breadcrumb 상태
   const [activeContent, setActiveContent] = useState(null); // Sidebar에서 전달된 콘텐츠
   const [colorMap, setColorMap] = useState({}); // 색상 저장 상태
+  const [pdfUrl, setPdfUrl] = useState(null); // PDF URL 상태
 
   // 색상 초기화
   useEffect(() => {
@@ -36,13 +39,14 @@ const Contents = ({ menuItems = [] }) => {
           <div
             key={subIndex}
             className="w-full max-w-[200px] h-[300px] border border-gray-300 rounded-lg shadow-md flex flex-col items-center relative"
+            onClick={() =>
+              handlePdfClick(`${process.env.PUBLIC_URL}/pdfs/example.pdf`)
+            } // PDF 클릭 처리
           >
             <div
               className="absolute top-0 left-0 w-8 h-full"
               style={{
                 backgroundColor: colorMap[subItem], // 랜덤 색상 사용
-                border: "none",
-                borderRadius: "0",
               }}
             ></div>
             <div className="flex flex-col justify-center items-center w-full h-full">
@@ -54,10 +58,18 @@ const Contents = ({ menuItems = [] }) => {
     );
   };
 
+  // PDF 클릭 처리 함수
+  const handlePdfClick = (url) => {
+    setPdfUrl(url); // PDF URL 업데이트
+    setBreadcrumb((prev) => [...prev, "PDF 보기"]);
+    window.location.href = url; // URL로 직접 이동
+  };
+
   // Breadcrumb의 "내 책장" 클릭 처리
   const handleHomeClick = () => {
     setBreadcrumb(["내 책장"]); // Breadcrumb 초기화
     setActiveContent(null); // Content 초기화
+    setPdfUrl(null); // PDF 초기화
   };
 
   return (
@@ -107,7 +119,11 @@ const Contents = ({ menuItems = [] }) => {
 
         {/* Content Area */}
         <div className="flex flex-col items-center justify-center flex-grow p-4">
-          {activeContent ? (
+          {pdfUrl ? (
+            <div className="w-full h-full">
+              <Viewer fileUrl={pdfUrl} />
+            </div>
+          ) : activeContent ? (
             activeContent
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 w-full">

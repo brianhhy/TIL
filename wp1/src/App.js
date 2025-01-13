@@ -3,6 +3,11 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 import Sidebar from "./components/Sidebar";
 import Contents from "./components/Contents";
 import LoginSignup from "./components/Login-Signup";
+import { pdfjs } from "react-pdf";
+import PdfViewerTest from "./components/PdfViewerTest"
+// PDF.js Worker 설정
+pdfjs.GlobalWorkerOptions.workerSrc = `public/pdf.worker.min.js`;
+
 
 const Home = () => {
   const navigate = useNavigate();
