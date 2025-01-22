@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 import Sidebar from "./components/Sidebar";
 import Contents from "./components/Contents";
 import LoginSignup from "./components/Login-Signup";
+import Document from "./components/Document"; // Document 컴포넌트 추가
 import { pdfjs } from "react-pdf";
-import PdfViewerTest from "./components/PdfViewerTest"
+import PdfViewerTest from "./components/PdfViewerTest";
+
 // PDF.js Worker 설정
 pdfjs.GlobalWorkerOptions.workerSrc = `public/pdf.worker.min.js`;
-
 
 const Home = () => {
   const navigate = useNavigate();
@@ -31,6 +32,8 @@ const Home = () => {
 };
 
 const Memo = ({ menuItems, handleMenuClick }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex w-full h-screen">
       <Contents
@@ -38,10 +41,15 @@ const Memo = ({ menuItems, handleMenuClick }) => {
         handleMenuClick={handleMenuClick} // Sidebar의 handleMenuClick 전달
         className="flex-grow" // 남은 공간을 채우도록 설정
       />
+      <button
+        className="absolute bottom-4 right-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition"
+        onClick={() => navigate("/memo/docs")}
+      >
+        Open Document
+      </button>
     </div>
   );
 };
-
 
 const App = () => {
   const menuItems = [
@@ -69,6 +77,7 @@ const App = () => {
           element={<Memo menuItems={menuItems} handleMenuClick={handleMenuClick} />}
         />
         <Route path="/login" element={<LoginSignup />} />
+        <Route path="/memo/docs" element={<Document />} /> {/* Document 라우트 추가 */}
       </Routes>
     </Router>
   );
