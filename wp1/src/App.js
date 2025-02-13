@@ -6,10 +6,11 @@ import LoginSignup from "./components/Login-Signup";
 import Document from "./components/Document"; // Document 컴포넌트 추가
 import { pdfjs } from "react-pdf";
 import PdfViewerTest from "./components/PdfViewerTest";
-
+import Summary from "./components/Summary";
 // PDF.js Worker 설정
 pdfjs.GlobalWorkerOptions.workerSrc = `public/pdf.worker.min.js`;
 
+// Home 컴포넌트
 const Home = () => {
   const navigate = useNavigate();
 
@@ -31,8 +32,24 @@ const Home = () => {
   );
 };
 
-const Memo = ({ menuItems, handleMenuClick }) => {
+// Memo 컴포넌트
+const Memo = () => {
   const navigate = useNavigate();
+
+  const menuItems = [
+    { name: "1-1", subItems: ["물리", "수학", "과학"], date: ["2024 07 21", "2024 09 21", "2024 05 24"] },
+    { name: "1-2", subItems: ["국어", "영어", "화학"], date: ["2024 10 28", "2024 04 21", "2024 02 25"] },
+    { name: "2-1", subItems: ["체육", "생명과학", "일본어"], date: ["2024 03 17", "2024 03 05", "2024 12 21"] },
+    { name: "2-2", subItems: ["123", "456", "789"], date: ["2024 04 08", "2024 01 31", "2024 03 09"] },
+    { name: "3-1", subItems: ["327", "934", "457"], date: ["2024 12 11", "2024 04 21", "2024 05 25"] },
+    { name: "3-2", subItems: ["136", "248", "741"], date: ["2024 03 04", "2024 09 05", "2024 02 10"] },
+    { name: "4-1", subItems: ["721", "329", "158"], date: ["2024 12 19", "2024 05 08", "2024 01 27"] },
+    { name: "4-2", subItems: ["264", "235", "369"], date: ["2024 07 21", "2024 09 21", "2024 05 24"] },
+  ];
+
+  const handleMenuClick = (index) => {
+    console.log(`Menu item ${index} clicked`);
+  };
 
   return (
     <div className="flex w-full h-screen">
@@ -51,33 +68,16 @@ const Memo = ({ menuItems, handleMenuClick }) => {
   );
 };
 
+// App 컴포넌트
 const App = () => {
-  const menuItems = [
-    { name: "1-1", subItems: ["물리", "수학", "과학"] },
-    { name: "1-2", subItems: ["국어", "영어", "화학"] },
-    { name: "2-1", subItems: ["체육", "생명과학", "일본어"] },
-    { name: "2-2", subItems: ["123", "456", "789"] },
-    { name: "3-1", subItems: ["327", "934", "457"] },
-    { name: "3-2", subItems: ["136", "248", "741"] },
-    { name: "4-1", subItems: ["721", "329", "158"] },
-    { name: "4-2", subItems: ["264", "235", "369"] },
-  ];
-
-  const handleMenuClick = (index) => {
-    console.log(`Menu item ${index} clicked`);
-    // Sidebar에서 클릭된 메뉴에 따른 추가 로직 처리 가능
-  };
-
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/memo"
-          element={<Memo menuItems={menuItems} handleMenuClick={handleMenuClick} />}
-        />
+        <Route path="/memo" element={<Memo />} />
         <Route path="/login" element={<LoginSignup />} />
         <Route path="/memo/docs" element={<Document />} /> {/* Document 라우트 추가 */}
+        <Route path="memo/docs/summary" element={<Summary />}/>
       </Routes>
     </Router>
   );
