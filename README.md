@@ -17,3 +17,7 @@
 - 3월 20일 : hipQ 프론트
 - 3월 21일 : 사이드 프로젝트(study planner)프론트
 - 3월 22일 : 백준 16953, 사이드 프로젝트(study planner)프론트
+- 3월 23일 : 백준 1049, 11047, 12904 사이드 프로젝트(study planner)프론트
+- 3월 24일 : hiQ 프론트(quotes) 마무리
+- 3월 24일 : 합병정렬 및 hipQ 프론트(curation) 시작
+- 3월 25일 : hipQ 프론트(curation) 
