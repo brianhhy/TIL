@@ -10,6 +10,9 @@
  * 8 -> B, E3
  * 9 -> g, q
  * 
+ * numstrs = ["ZASSETE","S4Z537B","7_ASZEYB"]
+ * wordss = ["2455373","425", "373", "378"]
+ * result = [3,2,3,2]
  * 다른 기호로 치환하지 않고 그대로 적어도 됨
  * 한 숫자가 서로 다른 기호로 치환될 수 있음
  * 단, 서로 다른 숫자가 같은 기호로 치환되지는 않음
@@ -27,17 +30,89 @@
 
  * */
 
-function Solution(numstrs, words){
-    let result = [];
-
+    function solution(numstrs, words) {
+      const digitToCandidates = {
+        "0": ["0", "O", "(", ")"],
+        "1": ["1", "I"],
+        "2": ["2", "Z", "S", "7_"],
+        "3": ["3", "E", "B"],
+        "4": ["4", "A"],
+        "5": ["5", "Z", "S"],
+        "6": ["6", "b", "G"],
+        "7": ["7", "T", "Y"],
+        "8": ["8", "B", "E3"],
+        "9": ["9", "g", "q"]
+      };
     
-
-
-    for(let i =0;i<numstrs.length;i++){
-        for (let j = 0;j<words.length;j++){
-            
+      function buildBadCharTable(word) {
+        const table = {};
+        for (let i = 0; i < word.length; i++) {
+          const digit = word[i];
+          const chars = digitToCandidates[digit] || [digit];
+          for (const char of chars) {
+            table[char] = i;
+          }
         }
+        return table;
+      }
+    
+      function bmMatch(text, pattern) {
+        const badCharTable = buildBadCharTable(pattern);
+        const m = pattern.length;
+        const n = text.length;
+        let matches = 0;
+    
+        for (let i = 0; i <= n - m; ) {
+          let j = m - 1;
+          const charToDigit = {};
+          const digitToChar = {};
+    
+          while (j >= 0) {
+            const textChar = text[i + j];
+            const patternDigit = pattern[j];
+            const candidates = digitToCandidates[patternDigit] || [patternDigit];
+    
+            if (!candidates.includes(textChar)) break;
+    
+            if (charToDigit[textChar] && charToDigit[textChar] !== patternDigit) break;
+            if (digitToChar[patternDigit] && digitToChar[patternDigit] !== textChar) break;
+    
+            charToDigit[textChar] = patternDigit;
+            digitToChar[patternDigit] = textChar;
+    
+            j--;
+          }
+    
+          if (j < 0) {
+            matches++;
+            i += 1;
+          } else {
+            const badChar = text[i + j];
+            const shift = j - (badCharTable[badChar] ?? -1);
+            i += Math.max(1, shift);
+          }
+        }
+    
+        return matches > 0;
+      }
+    
+      const result = [];
+    
+      for (const word of words) {
+        let count = 0;
+        for (const s of numstrs) {
+          if (bmMatch(s, word)) count++;
+        }
+        result.push(count);
+      }
+    
+      return result;
     }
-    return result;
-}
-
+    
+      
+     
+      const numstrs = ["ZASSETE", "S4Z537B", "7_ASZEYB"];
+      const wordss = ["2455373", "425", "373", "378"];
+      const result = solution(numstrs, wordss);
+      console.log(result);
+      
