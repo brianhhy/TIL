@@ -19,3 +19,7 @@ rl.on('line', function (line) {
     });
     console.log(str.join(''));
 });
+
+
+/* toUpperCase => 대문자 변환
+   toLowerCase => 소문자 변환*/

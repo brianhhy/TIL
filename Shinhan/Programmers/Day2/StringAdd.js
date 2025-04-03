@@ -9,9 +9,7 @@ let input = [];
 rl.on('line', function (line) {
     input = line.split(' ');
 }).on('close', function () {
-    str = input[0];
-    n = Number(input[1]);
-    console.log(str.repeat(n));
+    str1 = input[0];
+    str2 = input[1];
+    console.log(str1 + str2);
 });
-
-/* 문자열 반복 => 문자열.repeat(n) */
