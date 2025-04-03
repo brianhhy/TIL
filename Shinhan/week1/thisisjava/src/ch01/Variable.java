@@ -34,6 +34,9 @@ public class Variable {
 		// String은 참조 자료형
 		char m = 'A';
 		String n = "Hello";
+		String n2 = "";
+		String n3 = " ";
+		String n4 = null;
 		
 		int o = m+1;			//아스키코드 65 + 1됨
 		System.out.println(o); 
