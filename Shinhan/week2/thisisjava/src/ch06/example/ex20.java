@@ -13,25 +13,30 @@ public class ex20 {
 			System.out.println("--------------------------------------");
 			System.out.println("선택>");
 			int choice = scanner.nextInt();
+			scanner.nextLine();
+
 			if(choice == 1) {
 				System.out.println("----------");
 				System.out.println("계좌생성");
 				System.out.println("----------");
-				
-				System.out.println("계좌번호: ");
-				String Account = scanner.nextLine();
-				
-				System.out.println("계좌주: ");
+
+				System.out.print("계좌번호: ");
+				String account = scanner.nextLine();
+
+				System.out.print("계좌주: ");
 				String name = scanner.nextLine();
-				
-				System.out.println("초기입금액: ");
+
+				System.out.print("초기입금액: ");
 				String addMoney = scanner.nextLine();
-				
-				System.out.println("결과: 계좌가 생성되었습니다.");
+
+				System.out.print("결과: 계좌가 생성되었습니다.");
 			}
+
 			
 		}
 		
 	}
+
+	public BankApplication(int[] Account)
 
 }
