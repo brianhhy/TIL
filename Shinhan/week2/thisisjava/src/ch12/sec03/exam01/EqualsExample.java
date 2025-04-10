@@ -18,7 +18,7 @@ public class EqualsExample {
 			System.out.println("obj1과 obj3은 동등하지 않습니다.");
 		}
 		System.out.println(obj1);
-		obj1.setId
+		//obj1.setId
 	}
 
 }
