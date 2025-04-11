@@ -27,7 +27,7 @@ public class GenericEx {
 //			System.out.println(((Order)list.get(i)).getNumber());		// 일반 List
 			System.out.println(list.get(i).getNumber()); 				// 제네릭
 		} 
-		List<Integer> list2 = new ArrayList<>[;]
+		//List<Integer> list2 = new ArrayList<>[;]
 
 	}
 
