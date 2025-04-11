@@ -11,5 +11,7 @@ public class SynchronizedExample {
 		User2Thread user2Thread = new User2Thread();
 		user2Thread.setCalculator(calculator);
 		user2Thread.start();
+		
+		
 	}
 }
