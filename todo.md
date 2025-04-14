@@ -44,7 +44,6 @@ prisma를 활용한 nextjs db연동
 ---
 #### LinkedList, HashMap
 
-#### 자바 강의 정리
-
-
 #### 0414 코드 리뷰, 이중 while문 리팩토링 해보기
+
+#### 1일 1코테
