@@ -1,5 +1,6 @@
 package ch15.sec06.exam01;
 
+// hello
 
 public class Coin{
 	private int value;
