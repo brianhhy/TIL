@@ -1,4 +1,4 @@
-/*
+/*                                          
  * 0 -> 알파벳 대문자 O, 괄호()
  * 1 -> 대문자 I
  * 2 -> Z, S, 7_
@@ -9,13 +9,14 @@
  * 7 -> T, Y
  * 8 -> B, E3
  * 9 -> g, q
- * 
+ * ["ZASSETE", "S4Z537B", "7_ASZEYB"] 2455373
  * numstrs = ["ZASSETE","S4Z537B","7_ASZEYB"]
  * wordss = ["2455373","425", "373", "378"]
  * result = [3,2,3,2]
- * 다른 기호로 치환하지 않고 그대로 적어도 됨
- * 한 숫자가 서로 다른 기호로 치환될 수 있음
- * 단, 서로 다른 숫자가 같은 기호로 치환되지는 않음
+ * 1. 각 숫자는 정해진 방식에 따라 비슷한 모양의 다른 기호로 치환해서 적습니다.
+   1-1. 이때, 다른 기호로 치환하지 않고 그대로 적어도 됩니다.
+   2. 한 숫자가 서로 다른 기호로 치환될 수 있습니다.
+   3. 단, 서로 다른 숫자가 같은 기호로 치환되지는 않습니다.
  * 
  * 문자열이 담긴 배열 numstrs, 숫자로된 단어들이 담긴 words, 각 단어가 포함된 문자열은 몇개인지 return
  * 1 <= numstrs <= 100
@@ -30,76 +31,67 @@
 
  * */
 
-    function solution(numstrs, words) {
-      const digitToCandidates = {
-        "0": ["0", "O", "(", ")"],
-        "1": ["1", "I"],
-        "2": ["2", "Z", "S", "7_"],
-        "3": ["3", "E", "B"],
-        "4": ["4", "A"],
-        "5": ["5", "Z", "S"],
-        "6": ["6", "b", "G"],
-        "7": ["7", "T", "Y"],
-        "8": ["8", "B", "E3"],
-        "9": ["9", "g", "q"]
-      };
+    const digitToChars = {
+      '0': ['0', 'O', '(', ')'],
+      '1': ['1', 'I'],
+      '2': ['2', 'Z', 'S', '7_'],
+      '3': ['3', 'E', 'B'],
+      '4': ['4', 'A'],
+      '5': ['5', 'Z', 'S'],
+      '6': ['6', 'b', 'G'],
+      '7': ['7', 'T', 'Y'],
+      '8': ['8', 'B', 'E3'],
+      '9': ['9', 'g', 'q'],
+    };
     
-      function isValidMatch(text, pattern) {
-        const len = pattern.length;
+    // 가능한 변형 문자열을 백트래킹으로 생성
+    function generateWordPatterns(word) {
+      const results = [];
     
-        for (let i = 0; i <= text.length - len; i++) {
-          const charToDigit = {};
-          const digitToChar = {};
-    
-          let isMatch = true;
-    
-          for (let j = 0; j < len; j++) {
-            const ch = text[i + j];
-            const digit = pattern[j];
-            const candidates = digitToCandidates[digit];
-    
-            if (!candidates.includes(ch)) {
-              isMatch = false;
-              break;
-            }
-    
-            // 이미 매핑된 경우 일관성 유지
-            if (charToDigit[ch] && charToDigit[ch] !== digit) {
-              isMatch = false;
-              break;
-            }
-    
-            if (digitToChar[digit] && digitToChar[digit] !== ch) {
-              isMatch = false;
-              break;
-            }
-    
-            // 아직 매핑되지 않았지만 이미 다른 숫자가 이 문자를 사용한 경우
-            if (
-              !charToDigit[ch] &&
-              Object.entries(digitToChar).some(([d, c]) => c === ch && d !== digit)
-            ) {
-              isMatch = false;
-              break;
-            }
-    
-            charToDigit[ch] = digit;
-            digitToChar[digit] = ch;
-          }
-    
-          if (isMatch) return true;
+      function backtrack(i, path, usedChars, usedMap) {
+        if (i === word.length) {
+          results.push(path.join(''));
+          return;
         }
     
-        return false;
+        const digit = word[i];
+        for (const ch of digitToChars[digit]) {
+          if (usedMap[ch] && usedMap[ch] !== digit) continue;
+          if (!usedMap[ch] && Object.values(usedMap).includes(digit) && usedChars.has(ch)) continue;
+    
+          const prevMap = usedMap[ch];
+          usedMap[ch] = digit;
+          usedChars.add(ch);
+          path.push(ch);
+    
+          backtrack(i + 1, path, usedChars, usedMap);
+    
+          path.pop();
+          if (!prevMap) {
+            delete usedMap[ch];
+            usedChars.delete(ch);
+          }
+        }
       }
     
+      backtrack(0, [], new Set(), {});
+      return results;
+    }
+    
+    // 메인 로직
+    function solution(numstrs, words) {
       const result = [];
     
       for (const word of words) {
+        const patterns = generateWordPatterns(word);
         let count = 0;
-        for (const s of numstrs) {
-          if (isValidMatch(s, word)) count++;
+    
+        for (const numstr of numstrs) {
+          if (patterns.some(p => numstr.includes(p))) {
+            count += 1;
+          }
         }
+    
         result.push(count);
       }
     
@@ -109,5 +101,8 @@
     // ✅ 테스트
     const numstrs = ["ZASSETE", "S4Z537B", "7_ASZEYB"];
     const words = ["2455373", "425", "373", "378"];
-    console.log(solution(numstrs, words)); // ✅ [3, 2, 3, 2]
     
+    console.log(solution(numstrs, words));  // [3, 2, 3, 2]
+    
+    
+

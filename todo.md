@@ -11,6 +11,7 @@ framer-motion 확인해보기
 ---
 
 **hipQ - dailySentence**
+chapter1, 가운데 w-full h-[1px] bg-white/20 요소 지우기
 클립보드 복사 링크 바꾸기
 leftcontent, rightcontent에 자연스러운 애니메이션
 rightquotemaker 화면 모바일 최적화
