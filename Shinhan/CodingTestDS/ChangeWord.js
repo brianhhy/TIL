@@ -44,56 +44,53 @@
         "9": ["9", "g", "q"]
       };
     
-      function buildBadCharTable(word) {
-        const table = {};
-        for (let i = 0; i < word.length; i++) {
-          const digit = word[i];
-          const chars = digitToCandidates[digit] || [digit];
-          for (const char of chars) {
-            table[char] = i;
-          }
-        }
-        return table;
-      }
+      function isValidMatch(text, pattern) {
+        const len = pattern.length;
     
-      function bmMatch(text, pattern) {
-        const badCharTable = buildBadCharTable(pattern);
-        const m = pattern.length;
-        const n = text.length;
-        let matches = 0;
-    
-        for (let i = 0; i <= n - m; ) {
-          let j = m - 1;
+        for (let i = 0; i <= text.length - len; i++) {
           const charToDigit = {};
           const digitToChar = {};
     
-          while (j >= 0) {
-            const textChar = text[i + j];
-            const patternDigit = pattern[j];
-            const candidates = digitToCandidates[patternDigit] || [patternDigit];
+          let isMatch = true;
     
-            if (!candidates.includes(textChar)) break;
+          for (let j = 0; j < len; j++) {
+            const ch = text[i + j];
+            const digit = pattern[j];
+            const candidates = digitToCandidates[digit];
     
-            if (charToDigit[textChar] && charToDigit[textChar] !== patternDigit) break;
-            if (digitToChar[patternDigit] && digitToChar[patternDigit] !== textChar) break;
+            if (!candidates.includes(ch)) {
+              isMatch = false;
+              break;
+            }
     
-            charToDigit[textChar] = patternDigit;
-            digitToChar[patternDigit] = textChar;
+            // 이미 매핑된 경우 일관성 유지
+            if (charToDigit[ch] && charToDigit[ch] !== digit) {
+              isMatch = false;
+              break;
+            }
     
-            j--;
+            if (digitToChar[digit] && digitToChar[digit] !== ch) {
+              isMatch = false;
+              break;
+            }
+    
+            // 아직 매핑되지 않았지만 이미 다른 숫자가 이 문자를 사용한 경우
+            if (
+              !charToDigit[ch] &&
+              Object.entries(digitToChar).some(([d, c]) => c === ch && d !== digit)
+            ) {
+              isMatch = false;
+              break;
+            }
+    
+            charToDigit[ch] = digit;
+            digitToChar[digit] = ch;
           }
     
-          if (j < 0) {
-            matches++;
-            i += 1;
-          } else {
-            const badChar = text[i + j];
-            const shift = j - (badCharTable[badChar] ?? -1);
-            i += Math.max(1, shift);
-          }
+          if (isMatch) return true;
         }
     
-        return matches > 0;
+        return false;
       }
     
       const result = [];
@@ -101,7 +98,7 @@
       for (const word of words) {
         let count = 0;
         for (const s of numstrs) {
-          if (bmMatch(s, word)) count++;
+          if (isValidMatch(s, word)) count++;
         }
         result.push(count);
       }
@@ -109,10 +106,8 @@
       return result;
     }
     
-      
-     
-      const numstrs = ["ZASSETE", "S4Z537B", "7_ASZEYB"];
-      const wordss = ["2455373", "425", "373", "378"];
-      const result = solution(numstrs, wordss);
-      console.log(result);
-      
+    // ✅ 테스트
+    const numstrs = ["ZASSETE", "S4Z537B", "7_ASZEYB"];
+    const words = ["2455373", "425", "373", "378"];
+    console.log(solution(numstrs, words)); // ✅ [3, 2, 3, 2]
+    
