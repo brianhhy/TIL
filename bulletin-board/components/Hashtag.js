@@ -12,7 +12,7 @@ export function TagChip({ tag, isSelected, onClick }) {
         flex items-center gap-2 shadow-sm hover:shadow
         ${
           isSelected
-            ? "bg-[#331011] text-white border-2 border-[#FF4F59]" // Dark background (20% brightness of #FF4F59) with #FF4F59 border
+            ? "bg-[#FF4F5933] text-black border-2 border-[#FF4F59]" // Dark background (20% brightness of #FF4F59) with #FF4F59 border
             : "bg-white text-gray-700 border border-gray-200 hover:border-gray-300"
         }
       `}

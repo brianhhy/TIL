@@ -44,7 +44,7 @@
       '9': ['9', 'g', 'q'],
     };
     
-    // 가능한 변형 문자열을 백트래킹으로 생성
+    
     function generateWordPatterns(word) {
       const results = [];
     
@@ -78,7 +78,7 @@
       return results;
     }
     
-    // 메인 로직
+    
     function solution(numstrs, words) {
       const result = [];
     
@@ -102,7 +102,7 @@
     const numstrs = ["ZASSETE", "S4Z537B", "7_ASZEYB"];
     const words = ["2455373", "425", "373", "378"];
     
-    console.log(solution(numstrs, words));  // [3, 2, 3, 2]
+    console.log(solution(numstrs, words));
     
     
 
