@@ -7,6 +7,7 @@ Cuisine Selector Chips // 탭 버튼
 
 **애니메이션**
 framer-motion 확인해보기
+anime.js
 
 ---
 
