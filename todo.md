@@ -12,12 +12,11 @@ anime.js
 ---
 
 **hipQ - dailySentence**
-chapter1, 가운데 w-full h-[1px] bg-white/20 요소 지우기
-클립보드 복사 링크 바꾸기
 leftcontent, rightcontent에 자연스러운 애니메이션
 rightquotemaker 화면 모바일 최적화
 gif 교체
-
+카카오톡 공유하기
+chapter3 대표작, chapter2 알고 계셨나요?
 ---
 
 **hipQ - curation**
