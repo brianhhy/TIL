@@ -17,7 +17,7 @@ export default function VennChart() {
     const ctx = chartRef.current.getContext('2d');
 
     new Chart(ctx, {
-      type: 'venn', // 이건 그대로 유지
+      type: 'venn',
       data: {
         labels: ['Top Month Customers', 'Top 30 Sales'],
         datasets: [{

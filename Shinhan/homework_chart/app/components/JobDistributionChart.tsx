@@ -36,7 +36,7 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      display: false, // ✅ 기본 legend 숨김
+      display: false,
     },
   },
 };

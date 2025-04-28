@@ -1,7 +1,21 @@
 'use client';
 import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  LinearScale,
+  Title,
+  CategoryScale,
+  Tooltip,
+  Legend,
+  ChartOptions,
+} from 'chart.js';
+
+ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Legend);
 
 const labels = ['6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+
 const data = {
   labels,
   datasets: [
@@ -25,49 +39,51 @@ const data = {
       borderColor: '#FFCE56',
       fill: false,
       yAxisID: 'y1',
-    }
-  ]
+    },
+  ],
 };
 
-const options = {
+// ✅ 옵션 완벽 수정
+const options: ChartOptions<'line'> = {
   responsive: true,
   interaction: {
     mode: 'index',
     intersect: false,
   },
-  stacked: false,
   scales: {
     y: {
       type: 'linear',
       display: true,
       position: 'left',
+      stacked: false,
       title: {
         display: true,
-        text: '예약 건수'
-      }
+        text: '예약 건수',
+      },
     },
     y1: {
       type: 'linear',
       display: true,
       position: 'right',
+      stacked: false,
       title: {
         display: true,
-        text: '취소율 (%)'
+        text: '취소율 (%)',
       },
       grid: {
-        drawOnChartArea: false, // 그래프 겹침 방지
+        drawOnChartArea: false,
       },
       ticks: {
-        callback: (value: number) => `${value}%`,
-      }
-    }
-  }
+        callback: (value) => `${value}%`,
+      },
+    },
+  },
 };
 
 export default function ReservationChart() {
   return (
     <div>
-      <h2 className="text-lg">📉 예약 vs 취소 추이</h2>
+      <h2 className="text-lg mb-4">📉 예약 vs 취소 추이</h2>
       <Line data={data} options={options} />
     </div>
   );
