@@ -2,7 +2,7 @@
 import { Doughnut } from 'react-chartjs-2';
 
 const data = {
-  labels: ['회사원 X', '회사원 O'],
+  labels: ['온라인 X', '온라인 O'],
   datasets: [{
     data: [9, 21],
     backgroundColor: ['#36A2EB', '#FFCE56']
@@ -14,10 +14,11 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'right'
-    }
-  }
+      position: 'right' as const,
+    },
+  },
 };
+
 
 export default function OrderRatioChart() {
   return (
