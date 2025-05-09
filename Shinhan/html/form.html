@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    form
+    - method : 전송방식(get)
+    - action : 전송위치(디폴트 : 나 자신)
+    
+    method의 종류
+    - get : 전송시 주소창에 노출, 전송량 제한, 다른 사람한테 전달 가능
+    - post : 전송시 주소창에 노출 안됨, 전송량 제한 없음, 다른 사람한테 전달 불가능, 파일 전송 가능
+    
+    input 태그
+    
+    type 속성
+    - text : 텍스트
+    - password : 비밀번호
+    - radio : n개중에 하나
+    - checkbox : n개중에 여러개 선택 가능(서버에서 배열로 처리)
+    - file : 첨부파일(post, enctype="multipart/form-data" 필수)
+    - select : 드롭다운, multiple 속성으로 여러개 선택 가능, select 태그 안에 option 태그
+    - hidden : 숨김, 사용자가 볼 수 없음, 서버에서만 사용 
+    - button : 버튼
+    - reset : 초기화 버튼
+    
+    공통 속성
+    name : 파라미터 명
+    value : 파라미터 값
+
+    기타 속성
+    readonly : 읽기 전용(전송 가능)
+    disabled : 비활성화(전송 불가능)
+    checked : 체크박스, 라디오 버튼 선택
+    placeholder : 입력창에 미리보기
+    autofocus : 페이지 로드 시 포커스(테두리 바뀜)
+    maxlength : 최대 글자 수
+    required : 필수 입력
+    
+
+    -->
+    <form method="get" action="" enctype="multipart/form-data">
+        아이디 : <input type="text" name="id" placeholder="id" value="" required><br>
+        비밀번호 : <input type="password" name="pw" placeholder="비밀번호"><br>
+        성별 :
+            <input type="radio" name="gender" value="1" autofocus>남
+            <input type="radio" name="gender" value="2">여<br>
+        취미 :
+            <input type="checkbox" name="hobby" value="1">게임
+            <input type="checkbox" name="hobby" value="2" id="hobby2"><label for="hobby2">영화</label>
+            <input type="checkbox" name="hobby" value="3">독서
+            <input type="checkbox" name="hobby" value="4">운동 <br>
+        첨부 파일 : <input type="file" name="profile"><br>
+        최종 학력 :
+            <select name="school"> <!--multiple : select 옵션으로 option 여러개 선택 가능-->>
+                <option value="1">고등학교</option>
+                <option value="2" selected>대학교</option>
+                <option value="3">대학원</option>
+            </select><br>
+        <textarea nam="introduce" cols="40" rows="5">안녕하세요</textarea> <br>
+        <input type="number"><br>
+        <input type="date"><br>
+        <input type="image" src="/img/google.png"><br>
+        <input type="button" value="버튼">
+        <input type="reset" value="리셋">
+        <input type="submit" value="제출">
+</body>
+</html>
