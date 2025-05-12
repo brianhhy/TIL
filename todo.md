@@ -13,10 +13,9 @@ anime.js
 
 **hipQ - dailySentence**
 leftcontent, rightcontent에 자연스러운 애니메이션
-rightquotemaker pc환경과 phone 환경 높이 다르게 할것 
 gif 교체
 카카오톡 공유하기(카카오톡 api)
-chapter3 대표작, chapter2 알고 계셨나요?
+chapter3 화면 구성
 ---
 
 **hipQ - curation**
