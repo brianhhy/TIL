@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      caption-side: bottom;
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px dotted black;
+      padding: 10px;
+      text-align: center;
+    }
+    #tbl1{
+        width:200px;
+        table-layout: fixed;
+        word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h2>상품 구성</h2>
+  <table>
+    <caption>상품 구성</caption>
+    <thead>
+      <tr>
+        <th>용도</th>
+        <th>중량</th>
+        <th>개수</th>
+        <th>가격</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2">선물용</td>
+        <td>3kg</td>
+        <td>11~16과</td>
+        <td>35000원</td>
+      </tr>
+      <tr>
+        <td>5kg</td>
+        <td>16~20과</td>
+        <td>45000원</td>
+      </tr>
+      <tr>
+        <td rowspan="2">가정용</td>
+        <td>3kg</td>
+        <td>11~16과</td>
+        <td>35000원</td>
+      </tr>
+      <tr>
+        <td>5kg</td>
+        <td>16~20과</td>
+        <td>45000원</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="tbl1">
+    <tr>
+        <td>안녕하세요 저는 홍길동입니다. 반갑습니다.</td>
+        <td>hello_im_honggildong_nice_to_meet_you</td>
+    </tr>
+  </table>
+</body>
+</html>
