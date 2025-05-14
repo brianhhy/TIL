@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="heading">자바 스크립트</h1>
+    <p id="text">위 텍스트를 클릭해보세요</p>
+
+    <script>
+        let heading = document.querySelector('#heading');
+        console.log(heading);
+        function aaa(){
+            heading.style.color = "red";
+        }
+        heading.onclick = aaa;
+
+        if(confirm("삭제하시겠습니까?")){
+            console.log("삭제완료");
+        } else{
+            console.log("삭제취소");
+        }
+        var name = prompt("이름을 입력하세요");
+        document.write("<h1>안녕하세요</h1>");
+    </script>
+</body>
+
+</html>
