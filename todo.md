@@ -13,6 +13,11 @@ anime.js
 
 **hipQ - dailySentence**
 leftcontent, rightcontent에 자연스러운 애니메이션
+rightquotemaker 화면 모바일 최적화
+chapter2 로딩 크기 수정
+chapter3 버튼 크기 수정
+모바일 기준(767px 이하) 흰색 바탕으로 수정
+
 gif 교체
 카카오톡 공유하기(카카오톡 api)
 chapter3 화면 구성
