@@ -1,0 +1,72 @@
+<script>
+    // 동기 vs 비동기
+    // 동기는 순차적, 비동기는 예약형
+    // XMLHttpRequest(); 는 비동기
+    // setTimeout() : 특정시간 후에 한번 실행 
+    // setInterval() : 특정시간 간격마다 계속 실행
+
+    let req = new XMLHttpRequest();                                 // 2
+    req.open('get', 'https://jsonplaceholder.typicode.com/posts');
+    req.send();
+    
+    req.onreadystatechange = function(){
+        console.log('상태값 : ' + this.readyState);
+        console.log('상태값 : ' + this.status);
+
+        if(this.readyState === 4){
+            console.log(req.response);
+        }
+    }
+
+    setTimeout(function(){                                          // 3
+        console.log('setTimeout');
+    }, 1000);
+
+    // let interval = setInterval(function (){
+    //     console.log('setInterval');
+    // }, 1000);
+
+
+    
+    /*  시작버튼, 종료버튼
+        시작버튼 클릭하면 1초에 1씩 증가
+        중지시키는 방법 : clearInterval(매개변수)
+        매개변수 = setInterval의 리턴값 */
+    
+    console.log('외부 log');                                         // 1
+
+
+    // Promise (ES8)
+    function test(func) {
+        return new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                resolve('문자열');
+            });
+        });
+    }
+    test().then(function(arg) {
+        console.log(arg);
+    });
+
+    console.log('main 흐름');
+
+    // 비동기를 동기적으로 처리     async와 await은 세트
+    async function test2() {
+        let result = await test(function(arg) {
+            return arg;
+        });
+        console.log('test2:'+result);
+    };
+    test2();
+
+
+    // ajax
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(res => res.json())
+    .then(json => console.log(json));
+
+</script>
+
+<div id="count">0</div>
+<button></button>
+<button></button>
