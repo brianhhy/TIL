@@ -1,0 +1,12 @@
+<button id="stopBtn">중단</button>
+<script>
+  let count = 0;
+  let interval = setInterval(() => {
+    console.log(count, ++count);
+  }, 1000);
+
+  document.getElementById('stopBtn').addEventListener('click', () => {
+    clearInterval(interval);
+    console.log('반복 중단됨');
+  });
+</script>
