@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>커스텀 Alert</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+
+    .alert-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .alert-box {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      text-align: center;
+      min-width: 300px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .alert-box h2 {
+      margin: 0;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .alert-box button {
+      margin-top: 15px;
+      padding: 8px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .alert-box button:hover {
+      background-color: #45a049;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<button onclick="showAlert('안녕하세요! 이것은 커스텀 알림입니다.')">알림 보기</button>
+
+<div class="alert-overlay" id="customAlert">
+  <div class="alert-box">
+    <h2 id="alertMessage">여기에 메시지가 들어갑니다</h2>
+    <button onclick="closeAlert()">확인</button>
+  </div>
+</div>
+
+<script>
+  function showAlert(message) {
+    document.getElementById('alertMessage').textContent = message;
+    document.getElementById('customAlert').style.display = 'flex';
+  }
+
+  function closeAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
