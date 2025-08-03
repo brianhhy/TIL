@@ -1,0 +1,27 @@
+{
+  "name": "고양이 정보 앱",
+  "short_name": "고양이 앱",
+  "description": "고양이에 대한 재미있는 정보를 제공하는 PWA 앱",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0070f3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["entertainment", "education"],
+  "lang": "ko",
+  "dir": "ltr"
+} 
