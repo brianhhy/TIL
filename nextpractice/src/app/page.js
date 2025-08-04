@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import Button from "./cat/components/Button";
-import InstallPWA from "./components/InstallPWA";
+import InstallPWA from "./utils/InstallPWA";
 
 export default function Home() {
   return (
