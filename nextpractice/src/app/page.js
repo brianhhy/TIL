@@ -7,7 +7,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <h1>홈 화면</h1>
-        <Button href="/menu" variant="primary">
+        <Button href="/cat" variant="primary">
           메뉴로 이동
         </Button>
       </main>
