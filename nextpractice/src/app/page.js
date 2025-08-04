@@ -1,7 +1,6 @@
 'use client';
 
 import styled from 'styled-components';
-import Image from 'next/image';
 import Button from "./cat/components/Button";
 // import InstallPWA from "./utils/InstallPWA";
 
@@ -21,6 +20,10 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: url('/assets/HomeBackground.jpeg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   z-index: -1;
 `;
 
@@ -36,15 +39,7 @@ const Content = styled.div`
 export default function Home() {
   return (
     <Container>
-      <BackgroundImage>
-        <Image 
-          src="/assets/HomeBackground.jpeg" 
-          alt="홈 배경 이미지" 
-          fill
-          style={{ objectFit: 'contain' }}
-          priority
-        />
-      </BackgroundImage>
+      <BackgroundImage />
       <Content>
         <Button href="/cat" variant="primary">
           고양이 이야기 보러가기
