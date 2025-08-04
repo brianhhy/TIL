@@ -28,11 +28,19 @@ export default function InstallPWA() {
     const { outcome } = await promptInstall.userChoice;
     if (outcome === 'accepted') {
       console.log('사용자가 PWA 설치를 수락했습니다');
+      setSupportsPWA(false); // 설치 후 배너 숨기기
     } else {
       console.log('사용자가 PWA 설치를 거부했습니다');
     }
     setPromptInstall(null);
   };
+
+  // 이미 설치되었는지 확인
+  useEffect(() => {
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      setSupportsPWA(false);
+    }
+  }, []);
 
   if (!supportsPWA) {
     return null;
