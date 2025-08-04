@@ -41,9 +41,14 @@ export default function Home() {
     <Container>
       <BackgroundImage />
       <Content>
-        <Button href="/cat" variant="primary">
-          고양이 이야기 보러가기
-        </Button>
+        <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', justifyContent: 'center' }}>
+          <Button href="/cat" variant="glass">
+            고양이 이야기 보러가기
+          </Button>
+          <Button href="/mycat" variant="glass">
+            내 고양이 보러가기
+          </Button>
+        </div>
       </Content>
       {/* <InstallPWA /> */}
     </Container>

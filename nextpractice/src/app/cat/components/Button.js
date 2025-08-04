@@ -76,6 +76,17 @@ const StyledButton = styled.button`
             color: white;
           }
         `;
+      case 'glass':
+        return `
+          background-color: rgba(255, 255, 255, 0.1);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          backdrop-filter: blur(10px);
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+          }
+        `;
       default:
         return `
           background-color: #0070f3;
