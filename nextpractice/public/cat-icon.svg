@@ -1,0 +1,30 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 원 -->
+  <circle cx="256" cy="256" r="256" fill="#ffffff"/>
+  
+  <!-- 고양이 얼굴 -->
+  <circle cx="256" cy="280" r="120" fill="#ff6b6b"/>
+  
+  <!-- 고양이 귀 -->
+  <path d="M200 180 L180 140 L220 160 Z" fill="#ff6b6b"/>
+  <path d="M312 180 L332 140 L292 160 Z" fill="#ff6b6b"/>
+  
+  <!-- 고양이 눈 -->
+  <circle cx="230" cy="260" r="15" fill="#333333"/>
+  <circle cx="282" cy="260" r="15" fill="#333333"/>
+  
+  <!-- 고양이 코 -->
+  <circle cx="256" cy="280" r="8" fill="#ff4757"/>
+  
+  <!-- 고양이 수염 -->
+  <line x1="180" y1="270" x2="140" y2="270" stroke="#333333" stroke-width="3"/>
+  <line x1="180" y1="280" x2="140" y2="285" stroke="#333333" stroke-width="3"/>
+  <line x1="180" y1="290" x2="140" y2="300" stroke="#333333" stroke-width="3"/>
+  
+  <line x1="332" y1="270" x2="372" y2="270" stroke="#333333" stroke-width="3"/>
+  <line x1="332" y1="280" x2="372" y2="285" stroke="#333333" stroke-width="3"/>
+  <line x1="332" y1="290" x2="372" y2="300" stroke="#333333" stroke-width="3"/>
+  
+  <!-- 고양이 입 -->
+  <path d="M240 300 Q256 310 272 300" stroke="#333333" stroke-width="2" fill="none"/>
+</svg> 

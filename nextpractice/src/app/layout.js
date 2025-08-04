@@ -17,7 +17,6 @@ export const metadata = {
   description: "고양이에 대한 재미있는 정보를 제공하는 PWA 앱",
   manifest: "/manifest.json",
   themeColor: "#ffffff",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -28,13 +27,18 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
+      { url: "/next.svg", sizes: "any", type: "image/svg+xml" },
     ],
     apple: [
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/next.svg", sizes: "any", type: "image/svg+xml" },
     ],
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({ children }) {
@@ -53,11 +57,10 @@ export default function RootLayout({ children }) {
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon-192x192.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icon-192x192.png" />
+        <link rel="apple-touch-icon" href="/next.svg" />
+        <link rel="icon" type="image/svg+xml" href="/next.svg" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/icon-192x192.png" color="#ffffff" />
+        <link rel="mask-icon" href="/next.svg" color="#ffffff" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
