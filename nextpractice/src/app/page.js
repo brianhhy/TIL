@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import Button from "./cat/components/Button";
-import InstallPWA from "./utils/InstallPWA";
+// import InstallPWA from "./utils/InstallPWA";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
           메뉴로 이동
         </Button>
       </main>
-      <InstallPWA />
+      {/* <InstallPWA /> */}
     </div>
   );
 }
