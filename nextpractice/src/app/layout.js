@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// import ServiceWorkerRegistration from "./utils/ServiceWorkerRegistration";
+import ServiceWorkerRegistration from "./utils/ServiceWorkerRegistration";
+import StyledComponentsRegistry from './lib/registry';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,8 +65,10 @@ export default function RootLayout({ children }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-        {/* <ServiceWorkerRegistration /> */}
+        <StyledComponentsRegistry>
+          {children}
+        </StyledComponentsRegistry>
+        <ServiceWorkerRegistration />
       </body>
     </html>
   );

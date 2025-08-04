@@ -63,18 +63,6 @@ export default function Menu() {
 
         {data && data.data && (
           <div>
-            <div style={{ 
-              textAlign: 'center', 
-              marginBottom: '30px',
-              padding: '20px',
-              backgroundColor: '#f8f9fa',
-              borderRadius: '8px'
-            }}>
-              <h2>고양이 재미있는 사실들</h2>
-              <p>총 {data.total}개의 사실 중 {data.per_page}개를 보여줍니다.</p>
-              <p>현재 페이지: {data.current_page} / {data.last_page}</p>
-            </div>
-            
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
               {data.data.map((fact, index) => (
                 <Card 

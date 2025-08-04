@@ -1,6 +1,7 @@
 'use client';
 
 import styled from 'styled-components';
+import Image from 'next/image';
 import Button from "./cat/components/Button";
 // import InstallPWA from "./utils/InstallPWA";
 
@@ -20,10 +21,6 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/assets/HomeBackground.jpeg');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   z-index: -1;
 `;
 
@@ -36,22 +33,21 @@ const Content = styled.div`
   z-index: 1;
 `;
 
-const Title = styled.h1`
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  margin-bottom: 20px;
-  font-size: 2.5rem;
-  font-weight: bold;
-`;
-
 export default function Home() {
   return (
     <Container>
-      <BackgroundImage />
+      <BackgroundImage>
+        <Image 
+          src="/assets/HomeBackground.jpeg" 
+          alt="홈 배경 이미지" 
+          fill
+          style={{ objectFit: 'contain' }}
+          priority
+        />
+      </BackgroundImage>
       <Content>
-        <Title>홈 화면</Title>
         <Button href="/cat" variant="primary">
-          알쓸신고 보러가기
+          고양이 이야기 보러가기
         </Button>
       </Content>
       {/* <InstallPWA /> */}

@@ -7,6 +7,9 @@ const nextConfig = withPWA({
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
   buildExcludes: [/middleware-manifest\.json$/],
+  compiler: {
+    styledComponents: true,
+  },
 });
 
 export default nextConfig;
